@@ -61,5 +61,33 @@ $(function ($) {
                 $('input:checkbox[name=chk]').eq(k+1).prop('checked',false);
             }
         }
-    })
+    });
+
+
+    //체크박스
+    function CheckBox(flag,data) {
+        //service에 out으로 담았던 데이터를 가져오고
+        var list = data.list;
+        var a = $('#id').val();
+
+        //html += 으로 바로 js에서 jsp에 추가해주기 위해
+        var html = '';
+
+        //b를 선언, 처음에는 if문을 타고 그 다음부턴 차례로 else if else를 탄다
+
+        if (flag == "Y") {
+            var b = 1;
+            $.each(list, function (i, item) {
+                if (list[i].컬럼명 == "0") {
+                    html += '<input type="checkbox" name="chk" value="' + list[i].컬럼명    //checked
+                } else if (b == 2) {
+                    html += '<input type="checkbox" name="chk" value="' + list[i].컬럼명;  //
+                } else {
+                    html += '<input type="checkbox" name="chk" value="' + list[i].컬럼명;  //disabled 라고 가정하고
+                }
+                ++a;
+            });
+
+        }
+    }
 })
