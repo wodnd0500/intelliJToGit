@@ -35,8 +35,31 @@ $(function ($) {
         }
     });
 
+    //체크박스 비활성화와 활성화
 
+    $(document).on('click', 'input[name=chk]', function (){
+       var t = $('input:checkbox[name=chk]').index(this);
 
+       var checkFlag = $('input:checkbox[name=chk]').eq(t).is(':checked');
+       var checkLength = $('input:checkbox[name=chk]').length;
 
-
+       //현재 체크박스가 true일 시 다음 체크박스 활성화
+        if(checkFlag == true){
+            $('input:checkbox[name=chk]').eq(t+1).removeAttr("disabled");
+        }
+        //첫번째 체크박스 체크:false 일때 2,3번째 비활성화
+        else if(checkFlag == false){
+            for(var i = 1; i<checkLength; i++){
+                $('input:checkbox[name=chk]').eq(i).attr("disabled",true);
+                $('input:checkbox[name=chk]').eq(i).prop('checked',false);
+            }
+        }
+        // 현재 체크박스 체크: false일때 그 다음 체크박스 비활성화
+        else{
+            for(var k = t; k <checkLength; k++){
+                $('input:checkbox[name=chk]').eq(k+1).attr("disabled",true);
+                $('input:checkbox[name=chk]').eq(k+1).prop('checked',false);
+            }
+        }
+    })
 })
