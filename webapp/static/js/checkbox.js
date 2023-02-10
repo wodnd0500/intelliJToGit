@@ -90,4 +90,12 @@ $(function ($) {
 
         }
     }
+
+    //체크박스에서 선택된 체크박스들 값만 가져오기
+    var checkbox = $('input[name=chk]:checked');
+    var str = '';
+    checkbox.each(function (i){
+       var data = checkbox.eq(i);
+       str += data.val() +",";
+    });
 })
